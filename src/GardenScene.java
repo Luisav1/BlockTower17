@@ -1,6 +1,10 @@
+import java.io.FileInputStream;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 public class GardenScene extends BaseScene {
@@ -15,7 +19,32 @@ public class GardenScene extends BaseScene {
 
 	//override abstract parent
 	@Override
-	public void setup() {
+	public void setup() throws Exception {
+		
+		Image Garden = new Image(new FileInputStream("BackgroundPvZ.jpg"));
+		ImageView GardenView = new ImageView(Garden);
+		GardenView.setFitHeight(720);
+		GardenView.setFitWidth(1500);
+        
+		//creating the box where the buttons will be added
+		HBox buttons = new HBox();     
+        
+		//uploading image file
+		FileInputStream walnut =  new FileInputStream("walnut.png");
+		Image aWalnut = new Image(walnut); // create a image 
+		ImageView theWalnut = new ImageView(aWalnut);// create a image View 
+        
+		//same upload image process but for sunflower
+		FileInputStream sunflower = new FileInputStream("PvZ_Sunflower.jpg");
+		Image aSunflower = new Image(sunflower); // create a image 
+		ImageView theSunflower = new ImageView(aSunflower);        
+        
+		//creating the buttons and adding them to the HBox
+		Button thyWalnut = new Button("walnut",theWalnut);
+		Button thySunflower = new Button("",theSunflower);
+		buttons.getChildren().add(thyWalnut);
+		buttons.getChildren().add(thySunflower);
+		
 		StackPane root = new StackPane();
 		Scene scene = new Scene(root, 1050, 720);
 		
@@ -37,9 +66,17 @@ public class GardenScene extends BaseScene {
 		}
 		
 //		root.setGridLinesVisible(true);
+		
+		//adding background image
+		root.getChildren().add(GardenView);
+
 		//add firstStack to root
 		root.getChildren().add(firstStack);
 		firstStack.setAlignment(Pos.BOTTOM_RIGHT);
+		
+		//adding second stack of buttons to root
+		root.getChildren().add(buttons);
+		buttons.setAlignment(Pos.TOP_LEFT);
 		
 		
 		setScene(scene);
@@ -50,3 +87,4 @@ public class GardenScene extends BaseScene {
 	
 
 }
+
