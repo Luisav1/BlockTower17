@@ -42,23 +42,23 @@ public class GardenScene extends BaseScene {
 	//override abstract parent
 	@Override
 	public void setup() {
-		VBox root = new VBox();
+		StackPane root = new StackPane();
 		Scene scene = new Scene(root, LENGTH, WIDTH);
 
 		//Initialize game
 		Player player = new Player();
 		Game game = new Game(player);		
-
-		//add firstrow (plantwidgets) and secondrow (gardenslots) to root
-		root.getChildren().add(plantWidgets(game.getPlayer()));
-		root.getChildren().add(gardenSlots(game.getPlayer()));	
+		
+		root.getChildren().add(gardenButtons(game.getPlayer()));
 		
 		setScene(scene);
 		display();
 		
 	}
 	
-	public Node plantWidgets(Player aPlayer) {
+	public Node gardenButtons(Player aPlayer) {
+		
+		VBox root = new VBox();
 
 //		for (int column = 0; column = )
 		Button peaShooter = new Button("Peashooter");
@@ -68,11 +68,8 @@ public class GardenScene extends BaseScene {
 		//setup plants buttons in first row of layout
 		HBox box = new HBox();
 		box.getChildren().addAll(peaShooter, cherryBomb,frozenPeaShooter);
-		return box;
-	}
-	
-	public Node gardenSlots(Player aPlayer) {
-		//create empty button array
+		
+		//create empty button array for button
 		gardenslots = new Button[MAXSLOTS];	//number of elements must be stated
 		for (int i = 0; i < MAXSLOTS; ++i) {
 			gardenslots[i] = new Button("Button"+(i+1));	//label on buttons
@@ -93,36 +90,12 @@ public class GardenScene extends BaseScene {
 				++button;
 			}
 		}
-		return grid;
+		
+		//add firstrow (plantwidgets) and secondrow (gardenslots) to root
+		root.getChildren().add(box);
+		root.getChildren().add(grid);	
+		
+		return root;
 	}
-
-}
-		//create empty button array
-		gardenslots = new Button[MAXSLOTS];	//number of elements must be stated
-		for (int i = 0; i < MAXSLOTS; ++i) {
-			gardenslots[i] = new Button("Button"+(i+1));	//label on buttons
-			gardenslots[i].setPrefSize(100,  100);	//set button size
-		}
-		//create and add every button into array
-		int button = 0;
-		for (int row = 0; row < 5; ++row) {
-			for (int column = 0; column < 9; ++column) {
-				firstStack.add(gardenslots[button], column, row);
-				++button;
-			}
-		}
-		
-//		root.setGridLinesVisible(true);
-		//add firstStack to root
-		root.getChildren().add(firstStack);
-		firstStack.setAlignment(Pos.BOTTOM_RIGHT);
-		
-		
-		setScene(scene);
-		display();
-		
-	}
-	
-	
 
 }
