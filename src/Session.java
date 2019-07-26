@@ -14,7 +14,7 @@ public class Session extends Application {
 	
 	//override application method start()
 	@Override
-	public void start(Stage aStage) {
+	public void start(Stage aStage) throws Exception{
 		this.stage = aStage;
 		stage.setTitle("PvZ");
 		stage.show();
