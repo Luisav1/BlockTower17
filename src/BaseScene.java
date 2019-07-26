@@ -32,7 +32,7 @@ public abstract class BaseScene {
 	//example;
 	//start||quit scene sets up screen with start button
 	//garden scene sets up game play scene
-	public abstract void setup();
+	public abstract void setup() throws Exception;
 	
 	protected void display() {
 		session.setScene(this.scene);
