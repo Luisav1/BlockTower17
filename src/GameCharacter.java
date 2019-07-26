@@ -1,11 +1,19 @@
 
 public class GameCharacter {
-	private int health;
 	private String name = " ";
+	private int health;
 	private int attack;
 	
-	public GameCharacter() {
-		
+	public GameCharacter(String aName, int aHealth, int anAttack) {
+		this.name = new String(aName);
+		this.health = aHealth;
+		this.attack = anAttack;
+	}
+	
+	public GameCharacter(GameCharacter aCharacter) {
+		this.name = aCharacter.getName();
+		this.health = aCharacter.health;
+		this.attack = aCharacter.attack;
 	}
 
 	public int getHealth() {
